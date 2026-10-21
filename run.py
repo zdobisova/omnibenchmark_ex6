@@ -55,7 +55,7 @@ parser.add_argument(
     help="number of highly variable genes to use",
 )
 
-parser.add_argument("--seed", type=int, default=42, help="seed number")
+parser.add_argument("--seed", type=int, default=28, help="seed number")
 
 # only have manual filtering
 parser.add_argument(
@@ -121,7 +121,7 @@ adata.obs[["louvain", "leiden"]].reset_index(names="cell_id").to_csv(
     index=False,
 )
 
-hvg_list = adata.var.highly_variable.index.to_series()
+hvg_list = adata.var.names()
 hvg_list.to_csv(
     os.path.join(args.output_dir, f"{args.name}.hvgs.tsv"),
     sep="\t",
